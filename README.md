@@ -12,7 +12,7 @@ ATTENTION! The file named "res" must be placed in the same folder as the code to
 For those who just wanna play the game:
 
 
-What ya need to do is downloading and uncompressing the 7z file named "AirBattleInstaller", after which you'll get an installer and then just follow the steps.
+You can get an installer from Release and then just follow the steps.
 
 
 **0-0** 
