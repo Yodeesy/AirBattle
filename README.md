@@ -1,5 +1,17 @@
 # AirBattle
 
+> 🚀 **UPDATE / 版本更新**:
+> 
+> A modernized Web Edition of AirBattle is now available on the `feat/v2-web-edition` branch, rewritten with TypeScript, PixiJS, and Web Audio API.
+> 👉 **[Explore the Web Edition (feat/v2-web-edition branch)](https://github.com/Yodeesy/AirBattle/tree/feat/v2-web-edition)**
+> 
+> AirBattle 现已推出重制后的 Web 版本，基于 TypeScript、PixiJS 与 Web Audio API 实现，并对游戏性进行了全面优化。
+> 👉 **[点击此处前往体验 Web 重制版分支 (feat/v2-web-edition)](https://github.com/Yodeesy/AirBattle/tree/feat/v2-web-edition)**
+
+---
+
+### Legacy C++ Version / 历史 C++ 版本
+
 ![Status: Deprecated](https://img.shields.io/badge/Status-Deprecated-red.svg)
 
 This is my first attempt at making a game. As a C++ beginner, I spent the entire summer vacation debugging and finally finished this rough game on Visual Studio 2022. Many resources came from the internet, and there are also some AI-generated images and a simple song with repeating chords that I composed. Hope you like it. :) ---Aug 28th,2024
