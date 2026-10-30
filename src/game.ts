@@ -685,6 +685,7 @@ export class Game {
     const mI18n = I18N[lang].menu;
 
     const bgTex = await Assets.load('assets/sprites/ui/screen_menu.jpg');
+    if (this.state !== GameState.MAIN_MENU) return;
     const bgSprite = new Sprite(bgTex);
     bgSprite.width = CANVAS_WIDTH;
     bgSprite.height = CANVAS_HEIGHT;
@@ -834,6 +835,8 @@ export class Game {
     this.clearAllLayers();
 
     const bgTex = await Assets.load('assets/sprites/ui/map_select_bg.jpg');
+    if (this.state !== GameState.MAP_SELECT) return;
+
     const bgSprite = new Sprite(bgTex);
     bgSprite.width = CANVAS_WIDTH;
     bgSprite.height = CANVAS_HEIGHT;
@@ -844,6 +847,9 @@ export class Game {
     overlay.fill({ color: 0x050d18, alpha: 0.6 });
     this.bgLayer.addChild(overlay);
 
+    const mapContainer = new Container();
+    this.uiLayer.addChild(mapContainer);
+
     const lang = getLanguage();
     const mapI18n = I18N[lang].map;
 
@@ -852,7 +858,7 @@ export class Game {
       style: new TextStyle({ fill: 0x00f0ff, fontSize: 16, fontFamily: 'Segoe UI, Microsoft YaHei', lineHeight: 24 })
     });
     title.position.set(45, 32);
-    this.uiLayer.addChild(title);
+    mapContainer.addChild(title);
 
     const cardW = 135;
     const cardH = 270;
@@ -863,6 +869,12 @@ export class Game {
 
     const levelsPassed = this.saveManager.profile.levels_passed;
     let isLaunchingStage = false;
+
+    // Preload all map card textures in parallel to eliminate async tearing & race conditions
+    const cardTextures = await Promise.all(
+      Array.from({ length: 8 }, (_, i) => Assets.load(`assets/sprites/ui/M${i + 1}.png`).catch(() => null))
+    );
+    if (this.state !== GameState.MAP_SELECT) return;
 
     for (let idx = 1; idx <= 8; idx++) {
       const col = (idx - 1) % 4;
@@ -881,23 +893,25 @@ export class Game {
         isUnlocked = levelsPassed[idx - 2] === true;
       }
 
-      const cardTex = await Assets.load(`assets/sprites/ui/M${idx}.png`);
-      const cardSprite = new Sprite(cardTex);
-      cardSprite.width = cardW;
-      cardSprite.height = cardH;
-      cardSprite.position.set(x, y);
+      const cardTex = cardTextures[idx - 1];
+      if (cardTex) {
+        const cardSprite = new Sprite(cardTex);
+        cardSprite.width = cardW;
+        cardSprite.height = cardH;
+        cardSprite.position.set(x, y);
 
-      if (!isUnlocked) {
-        cardSprite.tint = 0x444455;
+        if (!isUnlocked) {
+          cardSprite.tint = 0x444455;
+        }
+        mapContainer.addChild(cardSprite);
       }
-      this.uiLayer.addChild(cardSprite);
 
       const badge = new Graphics();
       badge.roundRect(x, y + cardH + 8, cardW, 24, 5);
       badge.fill({ color: 0x0a1422, alpha: 0.9 });
       const badgeColor = isPassed ? 0x28dc78 : isUnlocked ? 0xffc828 : 0x778899;
       badge.stroke({ color: badgeColor, width: 1.5 });
-      this.uiLayer.addChild(badge);
+      mapContainer.addChild(badge);
 
       const badgeTextStr = isPassed ? mapI18n.passed : isUnlocked ? mapI18n.unlocked : mapI18n.locked;
       const badgeText = new Text({
@@ -905,7 +919,7 @@ export class Game {
         style: new TextStyle({ fill: badgeColor, fontSize: 11, fontFamily: 'Segoe UI, Microsoft YaHei' })
       });
       badgeText.position.set(x + (cardW - badgeText.width) / 2, y + cardH + 12);
-      this.uiLayer.addChild(badgeText);
+      mapContainer.addChild(badgeText);
 
       if (isUnlocked) {
         const hit = new Graphics();
@@ -933,6 +947,8 @@ export class Game {
           e.stopPropagation();
           if (isLaunchingStage) return;
           isLaunchingStage = true;
+          // Clear map select container immediately to prevent visual overlap during briefing or battle
+          this.clearAllLayers();
 
           if (idx === 1) {
             await this.storySystem.playMissionBriefing1(this.storyLayer);
@@ -944,14 +960,16 @@ export class Game {
           await this.startBattle(idx);
         });
 
-        this.uiLayer.addChild(hit);
+        mapContainer.addChild(hit);
       }
     }
 
-    this.createReturnButton(CANVAS_WIDTH / 2 - 90, 810, 180, 42, mapI18n.returnMenu, () => {
-      if (isLaunchingStage) return;
-      this.showMainMenu();
-    });
+    if (this.state === GameState.MAP_SELECT) {
+      this.createReturnButton(CANVAS_WIDTH / 2 - 90, 810, 180, 42, mapI18n.returnMenu, () => {
+        if (isLaunchingStage) return;
+        this.showMainMenu();
+      });
+    }
   }
 
   // ==========================================
@@ -1059,6 +1077,7 @@ export class Game {
 
       try {
         const fTex = await Assets.load(spec.sprite.replace(/^\//, ''));
+        if (this.state !== GameState.SHOP_DEFAULT && this.state !== GameState.SHOP_TPC_GUTS) return;
         const fSp = new Sprite(fTex);
         fSp.anchor.set(0.5);
         fSp.width = 95;
