@@ -1,0 +1,63 @@
+{
+  "frames": {
+    "boom1_0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 57,
+        "h": 51
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 51
+      }
+    },
+    "boom1_1": {
+      "frame": {
+        "x": 57,
+        "y": 0,
+        "w": 57,
+        "h": 51
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 51
+      }
+    },
+    "boom1_2": {
+      "frame": {
+        "x": 114,
+        "y": 0,
+        "w": 57,
+        "h": 51
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 51
+      }
+    },
+    "boom1_3": {
+      "frame": {
+        "x": 171,
+        "y": 0,
+        "w": 57,
+        "h": 51
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 51
+      }
+    }
+  },
+  "animations": {
+    "boom_small": [
+      "boom1_0",
+      "boom1_1",
+      "boom1_2",
+      "boom1_3"
+    ]
+  },
+  "meta": {
+    "image": "boom_small.png"
+  }
+}

@@ -1,0 +1,388 @@
+{
+  "frames": {
+    "boom_boss_0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_1": {
+      "frame": {
+        "x": 500,
+        "y": 0,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_2": {
+      "frame": {
+        "x": 1000,
+        "y": 0,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_3": {
+      "frame": {
+        "x": 1500,
+        "y": 0,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_4": {
+      "frame": {
+        "x": 2000,
+        "y": 0,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_5": {
+      "frame": {
+        "x": 2500,
+        "y": 0,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_6": {
+      "frame": {
+        "x": 0,
+        "y": 255,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_7": {
+      "frame": {
+        "x": 500,
+        "y": 255,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_8": {
+      "frame": {
+        "x": 1000,
+        "y": 255,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_9": {
+      "frame": {
+        "x": 1500,
+        "y": 255,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_10": {
+      "frame": {
+        "x": 2000,
+        "y": 255,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_11": {
+      "frame": {
+        "x": 2500,
+        "y": 255,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_12": {
+      "frame": {
+        "x": 0,
+        "y": 510,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_13": {
+      "frame": {
+        "x": 500,
+        "y": 510,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_14": {
+      "frame": {
+        "x": 1000,
+        "y": 510,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_15": {
+      "frame": {
+        "x": 1500,
+        "y": 510,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_16": {
+      "frame": {
+        "x": 2000,
+        "y": 510,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_17": {
+      "frame": {
+        "x": 2500,
+        "y": 510,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_18": {
+      "frame": {
+        "x": 0,
+        "y": 765,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_19": {
+      "frame": {
+        "x": 500,
+        "y": 765,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_20": {
+      "frame": {
+        "x": 1000,
+        "y": 765,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_21": {
+      "frame": {
+        "x": 1500,
+        "y": 765,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_22": {
+      "frame": {
+        "x": 2000,
+        "y": 765,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_23": {
+      "frame": {
+        "x": 2500,
+        "y": 765,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_24": {
+      "frame": {
+        "x": 0,
+        "y": 1020,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_25": {
+      "frame": {
+        "x": 500,
+        "y": 1020,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_26": {
+      "frame": {
+        "x": 1000,
+        "y": 1020,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_27": {
+      "frame": {
+        "x": 1500,
+        "y": 1020,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    },
+    "boom_boss_28": {
+      "frame": {
+        "x": 2000,
+        "y": 1020,
+        "w": 500,
+        "h": 255
+      },
+      "sourceSize": {
+        "w": 500,
+        "h": 255
+      }
+    }
+  },
+  "animations": {
+    "boom_boss": [
+      "boom_boss_0",
+      "boom_boss_1",
+      "boom_boss_2",
+      "boom_boss_3",
+      "boom_boss_4",
+      "boom_boss_5",
+      "boom_boss_6",
+      "boom_boss_7",
+      "boom_boss_8",
+      "boom_boss_9",
+      "boom_boss_10",
+      "boom_boss_11",
+      "boom_boss_12",
+      "boom_boss_13",
+      "boom_boss_14",
+      "boom_boss_15",
+      "boom_boss_16",
+      "boom_boss_17",
+      "boom_boss_18",
+      "boom_boss_19",
+      "boom_boss_20",
+      "boom_boss_21",
+      "boom_boss_22",
+      "boom_boss_23",
+      "boom_boss_24",
+      "boom_boss_25",
+      "boom_boss_26",
+      "boom_boss_27",
+      "boom_boss_28"
+    ]
+  },
+  "meta": {
+    "image": "boom_boss.png"
+  }
+}

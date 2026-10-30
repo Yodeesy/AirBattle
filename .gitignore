@@ -30,3 +30,30 @@
 *.exe
 *.out
 *.app
+
+# Legacy resources and extraction
+_legacy/
+res.7z
+
+# Dependencies and build outputs
+node_modules/
+dist/
+release/
+.cache/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Test artifacts and temporary scratch files
+test_*.png
+shot_*.png
+scratch_*
+
+# OS & IDE
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+*.log
+

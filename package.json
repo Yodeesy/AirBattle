@@ -1,0 +1,60 @@
+{
+  "name": "airbattle",
+  "version": "1.0.0",
+  "description": "![Status: Deprecated](https://img.shields.io/badge/Status-Deprecated-red.svg)",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173 --open",
+    "electron:dev": "electron electron/main.cjs",
+    "electron:start": "vite build && electron electron/main.cjs",
+    "pack": "vite build && electron-builder --win --dir",
+    "dist": "vite build && electron-builder --win",
+    "assets": "python tools/build_assets.py",
+    "test": "node tools/test_visuals.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fdir": "^6.5.0",
+    "howler": "^2.2.4",
+    "pixi.js": "^8.22.0"
+  },
+  "devDependencies": {
+    "@types/howler": "^2.2.13",
+    "@types/node": "^26.6.4",
+    "electron": "^41.7.1",
+    "electron-builder": "^26.15.3",
+    "ffmpeg-static": "^5.3.0",
+    "maxrects-packer": "^2.7.3",
+    "playwright": "^1.63.0",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3"
+  },
+  "build": {
+    "appId": "com.yodeeshi.airbattle",
+    "productName": "AirBattle",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "asar": true
+  }
+}
