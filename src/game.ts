@@ -247,7 +247,7 @@ export class Game {
       width: CANVAS_WIDTH,
       height: CANVAS_HEIGHT,
       backgroundColor: 0x070b14,
-      resolution: window.devicePixelRatio || 1,
+      resolution: Math.min(window.devicePixelRatio || 1, 1.25),
       autoDensity: true,
       antialias: true
     });

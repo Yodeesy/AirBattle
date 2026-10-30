@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>AirBattle: Remake</title>
+    <title>AirBattle</title>
     <style>
       * {
         box-sizing: border-box;
@@ -19,6 +19,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0;
+        padding: 0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       }
       #game-container {
@@ -27,9 +29,47 @@
         border-radius: 4px;
         overflow: hidden;
         background: #000;
+        /* Responsive aspect ratio: dynamically fit any browser viewport height without cropping */
+        width: min(100vw, calc(100vh * (700 / 890)));
+        height: min(100vh, calc(100vw * (890 / 700)));
+        max-width: 100vw;
+        max-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       canvas {
         display: block;
+        width: 100% !important;
+        height: 100% !important;
+        transform: translateZ(0);
+        will-change: transform;
+      }
+      #fullscreen-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 999;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        color: #38bdf8;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.2s ease;
+        opacity: 0.6;
+      }
+      #fullscreen-btn:hover {
+        opacity: 1;
+        background: rgba(2, 132, 199, 0.85);
+        color: #fff;
+        border-color: #00f0ff;
+        box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
       }
       #loading-screen {
         position: absolute;
@@ -64,12 +104,25 @@
   </head>
   <body>
     <div id="game-container">
+      <button id="fullscreen-btn" title="全屏切换 / Toggle Fullscreen (F11)" aria-label="Fullscreen">⛶</button>
       <div id="loading-screen">
         <div class="spinner"></div>
         <h2 style="letter-spacing: 2px;">AIR BATTLE</h2>
         <p class="tip-text" id="loading-tip">正在初始化资源与引擎...</p>
       </div>
     </div>
+    <script>
+      const fsBtn = document.getElementById('fullscreen-btn');
+      if (fsBtn) {
+        fsBtn.addEventListener('click', () => {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+          } else {
+            document.exitFullscreen().catch(() => {});
+          }
+        });
+      }
+    </script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
