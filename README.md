@@ -1,17 +1,16 @@
 # AirBattle
 
-> 🎮 **PLAY ONLINE / 立即在线游玩**:
+> 🎮 **PLAY ONLINE**:
 > 
 > **[▶ Click here to Play AirBattle Online (GitHub Pages)](https://yodeesy.github.io/AirBattle/)**  
-> **[▶ 点击此处直接在浏览器中免安装游玩 (GitHub Pages)](https://yodeesy.github.io/AirBattle/)**
 > 
-> 🚀 **SOURCE CODE / 重制版源码**:  
+> 🚀 **SOURCE CODE**:  
 > Modernized with TypeScript, PixiJS, and Web Audio API on the `feat/v2-web-edition` branch.  
 > 👉 **[Explore Web Edition Source Code (feat/v2-web-edition)](https://github.com/Yodeesy/AirBattle/tree/feat/v2-web-edition)**
 
 ---
 
-### Legacy C++ Version / 历史 C++ 版本
+### Legacy C++ Version
 
 ![Status: Deprecated](https://img.shields.io/badge/Status-Deprecated-red.svg)
 
