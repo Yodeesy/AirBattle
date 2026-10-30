@@ -1,12 +1,13 @@
 # AirBattle
 
-> 🚀 **UPDATE / 版本更新**:
+> 🎮 **PLAY ONLINE / 立即在线游玩**:
 > 
-> A modernized Web Edition of AirBattle is now available on the `feat/v2-web-edition` branch, rewritten with TypeScript, PixiJS, and Web Audio API.
-> 👉 **[Explore the Web Edition (feat/v2-web-edition branch)](https://github.com/Yodeesy/AirBattle/tree/feat/v2-web-edition)**
+> **[▶ Click here to Play AirBattle Online (GitHub Pages)](https://yodeesy.github.io/AirBattle/)**  
+> **[▶ 点击此处直接在浏览器中免安装游玩 (GitHub Pages)](https://yodeesy.github.io/AirBattle/)**
 > 
-> AirBattle 现已推出重制后的 Web 版本，基于 TypeScript、PixiJS 与 Web Audio API 实现，并对游戏性进行了全面优化。
-> 👉 **[点击此处前往体验 Web 重制版分支 (feat/v2-web-edition)](https://github.com/Yodeesy/AirBattle/tree/feat/v2-web-edition)**
+> 🚀 **SOURCE CODE / 重制版源码**:  
+> Modernized with TypeScript, PixiJS, and Web Audio API on the `feat/v2-web-edition` branch.  
+> 👉 **[Explore Web Edition Source Code (feat/v2-web-edition)](https://github.com/Yodeesy/AirBattle/tree/feat/v2-web-edition)**
 
 ---
 
