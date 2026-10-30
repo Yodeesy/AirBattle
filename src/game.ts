@@ -276,22 +276,110 @@ export class Game {
       this.update(ticker.deltaTime);
     });
 
-    // Remove initial loading screen
+    // 1. Kick off full asset preloading in background immediately!
+    const preloadPromise = this.preloadAllGameAssets();
+
+    // 2. Play opening video intro (Yodeeshi Logo + SYSU celebration)
+    // Assets download smoothly in parallel while player watches the opening video!
+    try {
+      await this.playVideoIntro('assets/videos/logo.mp4', 1.25);
+      await this.playVideoIntro('assets/videos/sysu.mp4', 1.25);
+    } catch (e) {
+      console.warn('Intro video error or skipped:', e);
+    }
+
+    // 3. Ensure preloading reaches 100% before entering the comic and menu
+    await preloadPromise;
+
+    // 4. Fade out and remove loading screen
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
       loadingScreen.style.opacity = '0';
-      setTimeout(() => loadingScreen.remove(), 300);
+      setTimeout(() => loadingScreen.remove(), 350);
     }
 
-    // Preload essential bullet, explosion and attention textures
-    this.preloadCoreBattleTextures();
-
-    // Launch startup intro sequence
-    await this.playStartupSequence();
+    // 5. Proceed to Comic Intro, Pilot Login, and Main Menu
+    this.clearAllLayers();
+    try {
+      await this.storySystem.playStory1(this.storyLayer);
+      await this.showPilotLogin();
+    } catch (err) {
+      console.warn('Startup sequence error, proceeding to Main Menu:', err);
+    }
+    this.showMainMenu();
   }
 
-  private async preloadCoreBattleTextures() {
+  private async preloadAllGameAssets(): Promise<void> {
     const texturesToLoad = [
+      // UI Backgrounds & Screens
+      'assets/sprites/ui/screen_menu.jpg',
+      'assets/sprites/ui/main_menu_bg.jpg',
+      'assets/sprites/ui/map_select_bg.jpg',
+      'assets/sprites/ui/screen_map_select.jpg',
+      'assets/sprites/ui/shop_hangar_bg.jpg',
+      'assets/sprites/ui/screen_shop.jpg',
+      'assets/sprites/ui/screen_shop_tpc.jpg',
+      'assets/sprites/ui/tpc_guts_hangar_bg.jpg',
+      'assets/sprites/ui/upgrade_tree_bg.jpg',
+      'assets/sprites/ui/screen_upgrade.jpg',
+      'assets/sprites/ui/muyu_zen_bg.jpg',
+      'assets/sprites/ui/screen_muyu.jpg',
+      'assets/sprites/ui/ending_credits.png',
+      'assets/sprites/ui/logo.png',
+
+      // Stage Map Cards
+      'assets/sprites/ui/M1.png',
+      'assets/sprites/ui/M2.png',
+      'assets/sprites/ui/M3.png',
+      'assets/sprites/ui/M4.png',
+      'assets/sprites/ui/M5.png',
+      'assets/sprites/ui/M6.png',
+      'assets/sprites/ui/M7.png',
+      'assets/sprites/ui/M8.png',
+
+      // Stage Background Tiles
+      'assets/sprites/common/L1_tileable.png',
+      'assets/sprites/common/L2_tileable.png',
+      'assets/sprites/common/L3_tileable.png',
+      'assets/sprites/common/L4_tileable.png',
+      'assets/sprites/common/L5_tileable.png',
+      'assets/sprites/common/L5_1.jpg',
+      'assets/sprites/common/L5_2.jpg',
+      'assets/sprites/common/L5_2_rlyeh.png',
+      'assets/sprites/common/L6_tileable.png',
+      'assets/sprites/common/L8.png',
+      'assets/sprites/common/L8.jpg',
+      'assets/sprites/common/L8_2.png',
+      'assets/sprites/common/L8_2.jpg',
+
+      // All 13 Player Fighters
+      'assets/sprites/common/fighter0_hd.png',
+      'assets/sprites/common/fighter1_hd.png',
+      'assets/sprites/common/fighter2_hd.png',
+      'assets/sprites/common/fighter3_hd.png',
+      'assets/sprites/common/GW_01_hd.png',
+      'assets/sprites/common/GW_02_hd.png',
+      'assets/sprites/common/GW_01A_hd.png',
+      'assets/sprites/common/GW-EX-J_alpha_hd.png',
+      'assets/sprites/common/GS_hd.png',
+      'assets/sprites/common/GW_02A_hd.png',
+      'assets/sprites/common/GW-EX-J_beta_hd.png',
+      'assets/sprites/common/GW-EX-J_hd.png',
+      'assets/sprites/common/GUTS_Eagle_hd.png',
+
+      // Bosses and Enemies
+      'assets/sprites/common/Boss1_hd.png',
+      'assets/sprites/common/Boss2_hd.png',
+      'assets/sprites/common/enemy_1_hd.png',
+      'assets/sprites/common/enemy_2_hd.png',
+      'assets/sprites/common/enemy_3_hd.png',
+      'assets/sprites/common/enemy_4_hd.png',
+      'assets/sprites/common/enemy_5_hd.png',
+      'assets/sprites/common/Zoiger1_hd.png',
+      'assets/sprites/common/Zoiger2_hd.png',
+      'assets/sprites/common/meteorite.png',
+
+      // Player & Enemy Bullets
       'assets/sprites/common/bullet_0.png',
       'assets/sprites/common/bullet_1.png',
       'assets/sprites/common/bullet_2.png',
@@ -300,6 +388,7 @@ export class Game {
       'assets/sprites/common/bullet_7.png',
       'assets/sprites/common/bullet_8.png',
       'assets/sprites/common/bullet_9.png',
+      'assets/sprites/common/bullet_MAX.png',
       'assets/sprites/common/MAX.png',
       'assets/sprites/common/b1.png',
       'assets/sprites/common/e1_bullet.png',
@@ -309,35 +398,30 @@ export class Game {
       'assets/sprites/common/Ebullet_3.png',
       'assets/sprites/common/Ebullet_4.png',
       'assets/sprites/common/Ebullet_5.png',
-      'assets/sprites/common/enemy_1_hd.png',
-      'assets/sprites/common/enemy_2_hd.png',
-      'assets/sprites/common/enemy_3_hd.png',
-      'assets/sprites/common/enemy_4_hd.png',
-      'assets/sprites/common/enemy_5_hd.png',
-      'assets/sprites/common/Zoiger1_hd.png',
-      'assets/sprites/common/Zoiger2_hd.png',
-      'assets/sprites/common/meteorite.png',
-      'assets/sprites/common/Boss1_hd.png',
-      'assets/sprites/common/Boss2_hd.png',
+      'assets/sprites/common/ef0.png',
       'assets/sprites/common/ef1.png',
       'assets/sprites/common/e1.png',
       'assets/sprites/common/e2.png',
       'assets/sprites/common/Efire.png',
       'assets/sprites/common/Elight.png',
-      'assets/sprites/common/L5_1.jpg',
-      'assets/sprites/common/L5_2.jpg',
-      'assets/sprites/common/L5_2_rlyeh.png',
-      'assets/sprites/common/L8.jpg',
-      'assets/sprites/common/L8.png',
-      'assets/sprites/common/L8_2.jpg',
-      'assets/sprites/common/L8_2.png',
-      'assets/sprites/ui/ending_credits.png',
+
+      // Story Comics
+      'assets/story/S1_1.png',
+      'assets/story/S1_2.png',
+      'assets/story/S1_3.png',
+      'assets/story/S1_4.png',
+      'assets/story/S1_5.png',
       'assets/story/S0.png',
-      'assets/sprites/common/L1_tileable.png',
-      'assets/sprites/common/fighter0_hd.png',
-      'assets/sprites/common/fighter1_hd.png'
+      'assets/story/S00.png',
+      'assets/story/S000.png',
+      'assets/story/S0000.png',
+      'assets/story/S00000.png',
+      'assets/story/S2_1.png',
+      'assets/story/S2_2.png',
+      'assets/story/failure.png'
     ];
 
+    // Explosions and Attention warning frames
     for (let i = 0; i < 4; i++) texturesToLoad.push(`assets/sprites/booms/boom1_${i}.png`);
     for (let i = 0; i < 8; i++) texturesToLoad.push(`assets/sprites/booms/boom2_${i}.png`);
     for (let i = 0; i < 7; i++) texturesToLoad.push(`assets/sprites/booms/boom3_1_${i}.png`);
@@ -346,9 +430,15 @@ export class Game {
     for (let i = 0; i < 42; i++) texturesToLoad.push(`assets/sprites/attention/attn_${i}.png`);
 
     try {
-      await Assets.load(texturesToLoad);
+      await Assets.load(texturesToLoad, (progress) => {
+        const percent = Math.floor(progress * 100);
+        const tipEl = document.getElementById('loading-tip');
+        if (tipEl) {
+          tipEl.textContent = `正在同步战备机库与战术空域资源... ${percent}%`;
+        }
+      });
     } catch (e) {
-      console.warn('Background texture preload warning:', e);
+      console.warn('Full asset preloading warning:', e);
     }
   }
 
